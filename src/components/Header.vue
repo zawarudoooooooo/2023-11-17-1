@@ -1,5 +1,7 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
@@ -8,7 +10,9 @@ export default{
     },
     components:{
         RouterLink,
-
+    },
+    computed:{
+        ...mapState(counter,["location","locationInfo"])
     }
 }
 </script>
@@ -22,6 +26,9 @@ export default{
         <RouterLink to="/Three" class="routerItem">三格切版</RouterLink>
         <RouterLink to="/Nine" class="routerItem">九格切版</RouterLink>
     </div>
+
+    <span>{{ location }}</span>
+    <span>{{ locationInfo }}</span>
 
 </template>
 
@@ -38,5 +45,10 @@ export default{
         margin-left: 3vmin;
         font-size: 20pt;
     }
+}
+
+span{
+    text-align: center;
+    font-size: 18pt;
 }
 </style>

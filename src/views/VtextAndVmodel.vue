@@ -1,4 +1,6 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
@@ -18,13 +20,17 @@ export default{
             radioText:"",
 
         }
-    },
+    },methods:{
+        ...mapActions(counter,["getLocation","setLocation"])
+    }
 }
 </script>
 
 <template>
-
     <div class="content">
+        <button type="button" @click="getLocation">BTN1</button>
+        <button type="button" @click="setLocation(2)">BTN2</button>
+
         <span>V-text</span>
         <p>{{ this.title }}</p>
         <br />
@@ -121,6 +127,14 @@ export default{
         height: 4vmin;
         text-align: center;
         border-radius: 5px;
+    }
+
+    button{
+        width: 10vmin;
+        height: 5vmin;
+        text-align: center;
+        margin-bottom: 3vmin;
+
     }
 
     .checkArea{
