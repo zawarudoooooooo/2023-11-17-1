@@ -22,6 +22,9 @@ export default{
         }
     },methods:{
         ...mapActions(counter,["getLocation","setLocation"])
+    },
+    mouted(){
+        this.setLocation(2)
     }
 }
 </script>

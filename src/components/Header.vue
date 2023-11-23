@@ -19,10 +19,11 @@ export default{
 
 <template>
     <div class="headerShow">
-        <RouterLink to="/" class="routerItem">Home</RouterLink>
-        <RouterLink to="/VtextAndVmodel" class="routerItem">V-text And V-model</RouterLink>
+        <RouterLink to="/" class="routerItem" :class="{'cass' : this.location===1}">Home</RouterLink>
+        <RouterLink to="/VtextAndVmodel" class="routerItem" :class="{'cass':this.location===2}">V-text And V-model</RouterLink>
         <RouterLink to="/Vfor" class="routerItem">V-for</RouterLink>
         <RouterLink to="/Von" class="routerItem">V-on</RouterLink>
+        <RouterLink to="/Vbind" class="routerItem">V-bind</RouterLink>
         <RouterLink to="/Three" class="routerItem">三格切版</RouterLink>
         <RouterLink to="/Nine" class="routerItem">九格切版</RouterLink>
     </div>

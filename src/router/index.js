@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import('../views/Von.vue')
     },
     {
+      path: '/Vbind',
+      name: 'Vbind',
+      component: () => import('../views/Vbind.vue')
+    },
+    {
       path: '/Three',
       name: 'Three',
       component: () => import('../views/Practice/Three.vue')
