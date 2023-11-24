@@ -24,6 +24,7 @@ export default{
         <RouterLink to="/Vfor" class="routerItem">V-for</RouterLink>
         <RouterLink to="/Von" class="routerItem">V-on</RouterLink>
         <RouterLink to="/Vbind" class="routerItem">V-bind</RouterLink>
+        <RouterLink to="/VifAndVshow" class="routerItem">V-if And V-show</RouterLink>
         <RouterLink to="/Three" class="routerItem">三格切版</RouterLink>
         <RouterLink to="/Nine" class="routerItem">九格切版</RouterLink>
     </div>

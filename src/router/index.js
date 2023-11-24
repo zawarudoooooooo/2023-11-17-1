@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('../views/Vbind.vue')
     },
     {
+      path: '/VifAndVshow',
+      name: 'VifAndVshow',
+      component: () => import('../views/VifAndVshow.vue')
+    },
+    {
       path: '/Three',
       name: 'Three',
       component: () => import('../views/Practice/Three.vue')
