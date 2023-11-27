@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/VifAndVshow.vue')
     },
     {
+      path: '/WatchAndComputed',
+      name: 'WatchAndComputed',
+      component: () => import('../views/WatchAndComputed.vue')
+    },
+    {
       path: '/Three',
       name: 'Three',
       component: () => import('../views/Practice/Three.vue')

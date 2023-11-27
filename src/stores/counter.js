@@ -23,7 +23,5 @@ export default defineStore("counter",{
         setLocation(num){
             this.location = num ;
         }
-
-
     }
 })
