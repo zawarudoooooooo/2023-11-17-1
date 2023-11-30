@@ -73,7 +73,7 @@ export default{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 3vmin;
+        margin-top: 1vmin;
 
         span{
             font-size: 36pt;

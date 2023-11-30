@@ -56,7 +56,7 @@ export default{
 
 <style lang="scss" scoped>
     .area{
-        margin-top: 3vmin;
+        margin-top: 1vmin;
         text-align: center;
         margin-bottom: 3vmin;
 

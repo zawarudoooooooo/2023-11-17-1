@@ -20,7 +20,9 @@ export default{
 <template>
     <div class="header">
     </div>
-    <p>{{ locationInfo }}</p>
+    <div class="buttom">
+        <p>{{ locationInfo }}</p>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -31,11 +33,16 @@ export default{
         opacity: 0.7;
     }
 
-    p{
+    .buttom{
+        position: relative;
+
+        p{
         text-align: center;
         font-size: 10pt;
         color: darkgray;
-        margin-top: 3vmin;
-        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        left: 1%;
+        }
     }
 </style>

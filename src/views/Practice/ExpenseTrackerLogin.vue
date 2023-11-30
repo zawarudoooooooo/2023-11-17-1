@@ -44,7 +44,7 @@ export default{
         width: 30vw;
         text-align: center;
         color: dimgray;
-        margin-top: 5vmin;
+        margin-top: 3vmin;
         margin-left: 75vmin;
         .title{
             font-size: 36pt;

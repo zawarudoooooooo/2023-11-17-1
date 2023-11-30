@@ -70,7 +70,7 @@ export default{
 <style lang="scss" scoped>
     .content{
         text-align: center;
-        margin-top: 3vmin;
+        margin-top: 1vmin;
 
         span{
         font-size: 36pt;

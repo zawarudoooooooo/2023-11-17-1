@@ -87,6 +87,9 @@
         <div class="itemThirteen">
             <p @click="goExpenseTracker()">Expense Tracker</p>
         </div>
+        <div class="itemFourteen">
+            <a href="https://monumental-crumble-977d07.netlify.app/"><p>Profile Website</p></a>
+        </div>
     </div>
 </template>
 
@@ -290,7 +293,28 @@
         width: 20vw;
         height: 10vh;
         border-radius: 5px;
-        background-color: #E7FBBE;
+        background-color: #FFCBCB;
+        &:hover{
+            opacity: 0.5;
+            scale: 1.01;
+        }
+
+        &:active{
+            opacity: 1;
+            scale: 0.8;
+        }
+    }
+    .itemFourteen{
+        width: 20vw;
+        height: 10vh;
+        border-radius: 5px;
+        background-color: #D9D7F1;
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
         &:hover{
             opacity: 0.5;
             scale: 1.01;
