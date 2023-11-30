@@ -20,21 +20,20 @@ export default{
             radioText:"",
 
         }
-    },methods:{
-        ...mapActions(counter,["getLocation","setLocation"])
     },
-    mouted(){
-        this.setLocation(2)
+    methods:{
+        ...mapActions(counter,["setLocation"])
+    },
+    mounted(){
+        this.setLocation(1)
     }
 }
 </script>
 
 <template>
     <div class="content">
-        <button type="button" @click="getLocation">BTN1</button>
-        <button type="button" @click="setLocation(2)">BTN2</button>
-
         <span>V-text</span>
+        <span>{{ locationinfo }}</span>
         <p>{{ this.title }}</p>
         <br />
 
@@ -111,7 +110,7 @@ export default{
 
     span{
         font-size: 36pt;
-        color: burlywood;
+        color: darkgray;
     }
 
     p{
@@ -132,16 +131,8 @@ export default{
         border-radius: 5px;
     }
 
-    button{
-        width: 10vmin;
-        height: 5vmin;
-        text-align: center;
-        margin-bottom: 3vmin;
-
-    }
-
     .checkArea{
-        color: burlywood;
+        color: darkgray;
 
         input{
             width: 7vmin;
@@ -149,7 +140,7 @@ export default{
         }
     }
     .radioArea{
-        color: burlywood;
+        color: darkgray;
 
         input{
             width: 7vmin;

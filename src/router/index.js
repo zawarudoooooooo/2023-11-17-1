@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Entry from '../views/Entry.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Entry',
+      component: Entry
     },
     {
       path: '/VtextAndVmodel',
@@ -40,6 +40,11 @@ const router = createRouter({
       component: () => import('../views/WatchAndComputed.vue')
     },
     {
+      path: '/Props',
+      name: 'Props',
+      component: () => import('../views/Props.vue')
+    },
+    {
       path: '/Three',
       name: 'Three',
       component: () => import('../views/Practice/Three.vue')
@@ -49,7 +54,21 @@ const router = createRouter({
       name: 'Nine',
       component: () => import('../views/Practice/Nine.vue')
     },
+    {
+      path: '/ExpenseTrackerLogin',
+      name: 'ExpenseTrackerLogin',
+      component: () => import('../views/Practice/ExpenseTrackerLogin.vue')
+    },
+    {
+      path: '/ExpenseTrackerSignup',
+      name: 'ExpenseTrackerSignup',
+      component: () => import('../views/Practice/ExpenseTrackerSignup.vue')
+    },
+    {
+      path: '/ExpenseTrackerProfile',
+      name: 'ExpenseTrackerProfile',
+      component: () => import('../views/Practice/ExpenseTrackerProfile.vue')
+    },
   ]
 })
-
 export default router

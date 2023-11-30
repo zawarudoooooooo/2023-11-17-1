@@ -1,4 +1,6 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
@@ -21,6 +23,12 @@ export default{
                 },
             ],
         }
+    },
+    methods:{
+        ...mapActions(counter,["setLocation"])
+    },
+    mounted(){
+        this.setLocation(2)
     }
 }
 </script>
@@ -47,10 +55,11 @@ export default{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 3vmin;
 
         span{
             font-size: 36pt;
-            color: burlywood;
+            color: darkgray;
         }
 
         p{

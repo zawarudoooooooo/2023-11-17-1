@@ -1,4 +1,6 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
@@ -22,13 +24,14 @@ export default{
         goOtherWay(){
             this.$router.push('/Vfor')
             alert("pooooooo")
-        }
-
+        },
+        ...mapActions(counter,["setLocation"])
     },
+    mounted(){
+        this.setLocation(3)
+    }
 }
-
 </script>
-
 
 <template>
     <div class="content">
@@ -49,13 +52,7 @@ export default{
         <br />
 
         <i class="fa-solid fa-poo fa-2xl" @click="goOtherWay"></i>
-
-
-
     </div>
-
-
-
 </template>
 
 
@@ -65,10 +62,11 @@ export default{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 3vmin;
 
         span{
             font-size: 36pt;
-            color: burlywood;
+            color: darkgray;
         }
 
         p{
@@ -96,7 +94,7 @@ export default{
         }
 
         i{
-            color: burlywood;
+            color: darkgray;
             margin-top: 2vmin;
             &:hover{
                 color: chocolate;

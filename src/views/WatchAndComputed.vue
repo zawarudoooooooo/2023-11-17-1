@@ -1,20 +1,22 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
             point:0,
-            ntd:0,
+            NTD:0,
         }
     },
     watch:{
         point(){
-            this.ntd=this.point*10
-            console.log(this.ntd)
+            this.NTD=this.point*10
+            console.log(this.NTD)
         }
     },
     computed:{
-        jyp(){
-            return this.ntd*4.5;
+        JPY(){
+            return this.NTD*4.5;
         }
 
     },
@@ -45,16 +47,22 @@ export default{
     methods:{
         clickPoint(){
             this.point+=1
-        }
+        },
+        ...mapActions(counter,["setLocation"])
     },
+    mounted(){
+        this.setLocation(6)
+    }
 }
 </script>
 
 <template>
     <div class="content">
-        <p>this.point:{{ this.point }}</p>
-        <p>this.ntd:{{ this.ntd }}</p>
-        <p>this.jyp:{{ this.jyp }}</p>
+        <span>Watch And Computed</span>
+        <br />
+        <p>point:{{ this.point }}</p>
+        <p>NTD:{{ this.NTD }}</p>
+        <p>JPY:{{ this.JPY }}</p>
         <div class="circle" @click="clickPoint"></div>
     </div>
 </template>
@@ -62,26 +70,33 @@ export default{
 <style lang="scss" scoped>
     .content{
         text-align: center;
+        margin-top: 3vmin;
+
+        span{
+        font-size: 36pt;
+        color: darkgray;
+        }
+        
         p{
             font-size: 28pt;
-            color: burlywood;
+            color: darkgray;
         }
         .circle{
             width: 200px;
             height: 200px;
-            background-color: bisque;
+            background-color: darkgray;
             border-radius: 50%;
             margin: auto;
             margin-top: 7vmin;
 
             &:hover{
-                scale: 1.5;
-                background-color: burlywood;
+                scale: 1.2;
+                background-color: lightslategray;
             }
 
             &:active{
                 scale: 0.8;
-                background-color: bisque;
+                background-color: darkgray;
             }
         }
     }

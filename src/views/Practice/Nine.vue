@@ -1,9 +1,17 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../../stores/counter"
 export default{
     data(){
         return{
             arr:[1,2,3,4,5,6,7,8,9]
         }
+    },
+    methods:{
+        ...mapActions(counter,["setLocation"])
+    },
+    mounted(){
+        this.setLocation(12)
     }
 }
 </script>
@@ -41,16 +49,16 @@ export default{
         height: 230vh;
         margin: auto;
         margin-top: 5vmin;
-        border: 1px solid black;
+        border: 2px solid black;
 
         .header{
-            width: 80vw;
+            width: 79.8vw;
             height: 20vh;
             background-color: mistyrose;
         }
 
         .first{
-            width: 80vw;
+            width: 79.8vw;
             height: 50vh;
             background-color: linen;
             margin-bottom: 5vmin;
@@ -108,8 +116,8 @@ export default{
         }
 
         .footer{
-            width: 80vw;
-            height: 15vh;
+            width: 79.8vw;
+            height: 14.9vh;
             background-color: mistyrose;
         }
     }

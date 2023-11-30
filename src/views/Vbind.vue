@@ -1,4 +1,6 @@
 <script>
+import { mapState, mapActions } from 'pinia'
+import counter from "../stores/counter"
 export default{
     data(){
         return{
@@ -12,6 +14,10 @@ export default{
         }
     },
     methods:{
+        ...mapActions(counter,["setLocation"])
+    },
+    mounted(){
+        this.setLocation(4)
     }
 }
 </script>
@@ -21,6 +27,7 @@ export default{
 V-bind 單向綁定 標籤屬性 綁 變數 -->
     <div class="content">
         <span>V-bind</span>
+        <br />
         <h1 class="title">Title</h1>
         <h1 v-bind:class="ttt">Head</h1>
         <br />
@@ -30,6 +37,7 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
         <input type="checkbox" value="true" v-model="isBlue">
         <label for="">isLarge</label>
         <input type="checkbox" value="true" v-model="isLarge">
+        <br />
         <h2 :class="{
             blue:isBlue,
             large:isLarge
@@ -43,6 +51,7 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
         <input type="checkbox" value="large" v-model="styleArr" name="test">
         <label for="">Rotate</label>
         <input type="checkbox" value="rotate" v-model="styleArr" name="test">
+        <br />
         <h2 :class="styleArr">你怎麼不去問問神奇海螺❓</h2>
         <br />
 
@@ -59,11 +68,7 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
             <option value="">請選擇</option>
             <option :value="index" v-for="(item,index) in arrText">{{ item }}</option>
         </select>
-
-
-
     </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -72,10 +77,11 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 3vmin;
 
         span{
             font-size: 36pt;
-            color: burlywood;
+            color: darkgray;
         }
 
         p{
@@ -85,6 +91,25 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
         li{
             text-align: center;
             font-size: 16pt;
+        }
+
+        h3{
+            color: darkgray;
+        }
+
+        h2{
+            color: darkgray;
+        }
+
+        label{
+            color: darkgray;
+            margin-bottom: 1vmin;
+        }
+
+        select{
+            border-radius: 3px;
+            color: darkgray;
+            text-align: center;
         }
     }
 

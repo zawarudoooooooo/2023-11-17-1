@@ -4,7 +4,7 @@ export default defineStore("counter",{
     //data(){}
     state(){
         return{
-            location:1,
+            location:"",
         }
 
     },
@@ -13,7 +13,6 @@ export default defineStore("counter",{
         locationInfo(){
             return `現在位置:${this.location}`
         }
-
     },
     //methods
     actions:{
