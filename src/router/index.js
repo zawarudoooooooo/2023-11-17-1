@@ -12,27 +12,27 @@ const router = createRouter({
     {
       path: '/VtextAndVmodel',
       name: 'VtextAndVmodel',
-      component: () => import('../views/VtextAndVmodel.vue')
+      component: () => import('../views/VInstruction/VtextAndVmodel.vue')
     },
     {
       path: '/Vfor',
       name: 'Vfor',
-      component: () => import('../views/Vfor.vue')
+      component: () => import('../views/VInstruction/Vfor.vue')
     },
     {
       path: '/Von',
       name: 'Von',
-      component: () => import('../views/Von.vue')
+      component: () => import('../views/VInstruction/Von.vue')
     },
     {
       path: '/Vbind',
       name: 'Vbind',
-      component: () => import('../views/Vbind.vue')
+      component: () => import('../views/VInstruction/Vbind.vue')
     },
     {
       path: '/VifAndVshow',
       name: 'VifAndVshow',
-      component: () => import('../views/VifAndVshow.vue')
+      component: () => import('../views/VInstruction/VifAndVshow.vue')
     },
     {
       path: '/WatchAndComputed',
