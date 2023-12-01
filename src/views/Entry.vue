@@ -28,7 +28,7 @@
                 this.$router.push('/Props')
             },
             goEmit(){
-                this.$router.push('/Vfor')
+                this.$router.push('/Emit')
             },
             goProvide(){
                 this.$router.push('/Vfor')
@@ -70,7 +70,7 @@
             <p @click="goProps()">Props</p>
         </div>
         <div class="itemEight">
-            <p>Emit</p>
+            <p @click="goEmit()">Emit</p>
         </div>
         <div class="itemNine">
             <p>Provide</p>

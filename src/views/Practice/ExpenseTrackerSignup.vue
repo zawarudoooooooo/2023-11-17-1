@@ -4,19 +4,50 @@ import counter from "../../stores/counter";
 export default{
     data(){
         return{
+            userinfoArr:[]
         }
     },
     methods:{
         ...mapActions(counter,["setLocation"]),
+
         goLogin(){
             this.$router.push('/ExpenseTrackerLogin')
         },
         goEntry(){
             this.$router.push('/')
-        }
+        },
+        signupCheck(){
+            const account = document.getElementById("inputAc").value;
+            const password = document.getElementById("inputPw").value;
+            const repassword = document.getElementById("inputrePw").value;
+
+            if(account!="" && password!="" &&repassword!=""){
+                if(password==repassword){
+                    alert("註冊成功，請重新登錄")
+
+                    let userObj={
+                        userName:account,
+                        userPassword:password
+                    }
+                    this.userinfoArr.push(userObj)
+                    localStorage.setItem("this.userinfoArr", JSON.stringify((this.userinfoArr)))
+
+                    inputAc.value="",
+                    inputPw.value="",
+                    inputrePw.value=""
+
+                    //this.goLogin()
+
+                }else{
+                    alert("輸入密碼不相符，請再次輸入")
+                }
+            }else{
+                alert("輸入欄不能空白，請再次檢查")
+                }
+        },
     },
     mounted(){
-        this.setLocation(12)
+        this.setLocation(13)
     }
 }
 </script>
@@ -28,15 +59,15 @@ export default{
         </div>
         <div class="inputArea">
             <p>Account</p>
-            <input type="text" placeholder="請輸入帳號">
+            <input type="text" placeholder="請輸入帳號" id="inputAc">
             <p>Password</p>
-            <input type="password" placeholder="請輸入密碼">
+            <input type="password" placeholder="請輸入密碼" id="inputPw">
             <p id="rpw">Repeat Password</p>
-            <input type="password" placeholder="請確認密碼">
+            <input type="password" placeholder="請確認密碼" id="inputrePw">
         </div>
         <div class="buttonArea">
             <button type="button" @click="goEntry()">Cancle</button>
-            <button type="button" @click="goLogin()">Sign Up</button>
+            <button type="button" @click="signupCheck()">Sign Up</button>
         </div>
     </div>
 </template>

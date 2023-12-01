@@ -4,13 +4,59 @@ import counter from "../../stores/counter"
 export default{
     data(){
         return{
+            addDialog:false,
+            deleteDialog:false,
+            balanceNum:0,
+            positiveNum:0,
+            negativeNum:0,
+            addArr:[],
         }
     },
     methods:{
-        ...mapActions(counter,["setLocation"])
+        ...mapActions(counter,["setLocation"]),
+        showAddDialog(){
+            this.addDialog=true
+        },
+        closeAddDialog(){
+            this.addDialog=false
+        },
+        showDeleteDialog(){
+            this.deleteDialog=true
+        },
+        closeDeleteDialog(){
+            this.deleteDialog=false
+        },
+        //新增視窗防呆和丟資料
+        addItem() {
+            const item = document.getElementById("addItem").value;
+            const money = document.getElementById("addMoney").value;
+
+            if (item != "" && money != "") {
+                if(money>0){
+                    this.positiveNum+=this.money
+                }else{
+                    this.negativeNum+=this.money
+                }
+                    alert("新增成功")
+                    this.balanceNum = this.positiveNum - this.negativeNum;
+                    this.item = "";
+                    this.money = "";
+
+                    let itemObj = {
+                        text: item,
+                        amount: money,
+                    }
+
+                    this.addArr.push(itemObj)
+                    localStorage.setItem("this.addArr", JSON.stringify((this.addArr)));
+                }
+            else {
+                alert("欄位不能為空白，請再次檢查")
+            }
+        },
     },
     mounted(){
-        this.setLocation(12)
+        this.setLocation(14)
     }
 }
 </script>
@@ -26,36 +72,55 @@ export default{
             </div>
             <div class="balanceArea">
                 <p>Your Balance</p>
-                <p id="balanceNum">$520</p>
+                <p id="balanceNum">${{ this.balanceNum }}</p>
             </div>
         </div>
         <div class="recordArea">
             <div class="incomeAndExpense">
                 <div class="income">
                     <p>INCOME</p>
-                    <p>$520</p>
+                    <p id="positiveNum">${{ this.positiveNum }}</p>
                 </div>
                 <div class="expense">
                     <p>EXPENSE</p>
-                    <P>$-520</P>
+                    <P id="negativeNum">${{ this.negativeNum }}</P>
                 </div>
             </div>
             <div class="buttonArea">
-                <button type="button">Add transaction</button>
+                <button type="button" @click="showAddDialog()">Add transaction</button>
+            </div>
+            <div class="addTransaction" v-if="addDialog">
+                <div class="addShow">
+                    <i class="fa-solid fa-xmark" @click="closeAddDialog()"></i>
+                    <p>Text</p>
+                    <input type="text" placeholder="請輸入項目" id="addItem" v-model="item">
+                    <p>Amount</p>
+                    <input type="number" placeholder="請輸入金額" id="addMoney" v-model="money">
+                    <button type="button" @click="addItem()">Add transaction</button>
+                </div>
+            </div>
+            <div class="deleteItem" v-if="deleteDialog">
+                <div class="deleteShow">
+                    <i class="fa-solid fa-xmark" @click="closeDeleteDialog()"></i>
+                    <p>Sure to delete?</p>
+                    <button type="button">Delete</button>
+                </div>
             </div>
             <div class="listArea">
                 <ul>
                     <li>
-                        <div class="itemArea">
-                            <p>發票中獎</p>
-                            <p>$500</p>
+                        <div class="itemArea" v-for="(item,index) in addArr">
+                            <p>{{ item.text }}</p>
+                            <p>${{ item.amount }}</p>
+                            <div class="listBtn">
+                                <button type="button" @click="showDeleteDialog()">Delete</button>
+                            </div>
                         </div>
-                        <button type="button">Delete</button>
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
+    </div> 
 </template>
 
 <style lang="scss" scoped>
@@ -148,6 +213,113 @@ export default{
                 }
             }
 
+            .addTransaction{
+                position: relative;
+                .addShow{
+                    width: 30vw;
+                    height: 35vh;
+                    border-radius: 10px;
+                    background-color: lightgray;
+                    text-align: center;
+                    padding-top: 2vmin;
+                    margin: auto;
+
+                    i{
+                        position: absolute;
+                        right: 31.5%;
+                        color: white;
+                        font-size: 15pt;
+                    }
+
+                    P{
+                        margin-bottom: 0;
+                        color: white;
+                        font-size: 14pt;
+                    }
+
+                    input{
+                        width: 25vw;
+                        height: 5vh;
+                        border-radius: 5px;
+                        outline: none;
+                        border-style: none;
+                        margin-bottom: 2vmin;
+                        padding-left: 2vmin;
+                    }
+
+                    button{
+                    width: 12vw;
+                    height: 6vh;
+                    border-radius: 5px;
+                    background-color: white;
+                    color: dimgray;
+                    font-size: 14pt;
+                    border-style: none;
+                    margin-top: 2vmin;
+
+                    &:hover{
+                        background-color: dimgray;
+                        color: white;
+                    }
+
+                    &:active{
+                        background-color: white;
+                        color: dimgray;
+                    }
+                    }
+                }
+            }
+
+            .deleteItem{
+                width: 30vw;
+                height: 35vh;
+                border-radius: 10px;
+                background-color: lightgray;
+                text-align: center;
+                padding-top: 2vmin;
+                margin: auto;
+
+                    i{
+                        position: absolute;
+                        right: 23%;
+                        color: white;
+                        top: 72%;
+                        font-size: 16pt;
+                    }
+
+                    P{
+                        margin-bottom: 0;
+                        color: white;
+                        font-size: 28pt;
+                        margin-top: 4vmin;
+                    }
+
+                    button{
+                    width: 12vw;
+                    height: 6vh;
+                    border-radius: 5px;
+                    background-color: white;
+                    color: dimgray;
+                    font-size: 14pt;
+                    border-style: none;
+                    margin-top: 9vmin;
+
+                    &:hover{
+                        background-color: dimgray;
+                        color: white;
+                    }
+
+                    &:active{
+                        background-color: white;
+                        color: dimgray;
+                    }
+                    }
+                }
+
+            }
+
+
+
             .listArea{
                 width: 70vw;
                 margin: auto;
@@ -157,22 +329,26 @@ export default{
                 ul{
                     color: lightgray;
                     li{
-                        width: 50vmin;
-                        height: 18vmin;
-                        border-radius: 10px;
-                        border: 2px solid lightgray;
-                        
+                        display: flex;
+    
                         .itemArea{
-                            display: flex;
+                            //display: flex;
                             justify-content: space-around;
-                            padding: 2vmin;
+                            //padding: 2vmin;
+                            width: 50vmin;
+                            height: 18vmin;
+                            border-radius: 10px;
+                            border: 2px solid lightgray;
+
                             p{
                                 font-size: 14pt;
                                 color: black;
                             }
                         }
 
-                        button{
+                        .listBtn{
+
+                            button{
                             width: 8vw;
                             height: 4vh;
                             border-radius: 5px;
@@ -192,9 +368,12 @@ export default{
                                 color: white;
                             }
                         }
+
+                        }
+
+
                     }
                 }
             }
         }
-    }
 </style>

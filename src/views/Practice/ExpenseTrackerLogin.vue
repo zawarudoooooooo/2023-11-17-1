@@ -13,6 +13,18 @@ export default{
         },
         goProfile(){
             this.$router.push('/ExpenseTrackerProfile')
+        },
+        loginCheck(){
+            const account = document.getElementById('loginAc').value
+            const password = document.getElementById('loginPw').value
+
+            let existingUserInfo = localStorage.getItem('this.userinfoArr')
+
+            if(account==existingUserInfo.userName&&password==existingUserInfo.userPassword){
+                alert("登錄成功")
+            }
+
+            this.goProfile();
         }
     },
     mounted(){
@@ -28,13 +40,13 @@ export default{
         </div>
         <div class="inputArea">
             <p>Account</p>
-            <input type="text" placeholder="請輸入帳號">
+            <input type="text" placeholder="請輸入帳號" id="loginAc">
             <p>Password</p>
-            <input type="password" placeholder="請輸入密碼">
+            <input type="password" placeholder="請輸入密碼" id="loginPw">
         </div>
         <div class="buttonArea">
             <button type="button" @click="goSignup()">Sign Up</button>
-            <button type="button" @click="goProfile()">Log In</button>
+            <button type="button" @click="loginCheck()">Log In</button>
         </div>
     </div>
 </template>
