@@ -4,7 +4,7 @@ import counter from "../../stores/counter";
 export default{
     data(){
         return{
-            userinfoArr:[]
+            userinfoArr:JSON.parse(localStorage.getItem("this.userinfoArr")) || []
         }
     },
     methods:{
@@ -36,7 +36,7 @@ export default{
                     inputPw.value="",
                     inputrePw.value=""
 
-                    //this.goLogin()
+                    this.goLogin()
 
                 }else{
                     alert("輸入密碼不相符，請再次輸入")

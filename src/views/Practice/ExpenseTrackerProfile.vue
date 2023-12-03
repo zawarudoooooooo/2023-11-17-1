@@ -9,8 +9,23 @@ export default{
             balanceNum:0,
             positiveNum:0,
             negativeNum:0,
-            addArr:[],
+            addArr:JSON.parse(localStorage.getItem("this.addArr")) || [],
+            item:"",
+            money:"",
+            key:"",
+            deleIndex:null,
         }
+    },
+    //抓取localStorage的值
+    created(){
+        const savedtransactions = JSON.parse(localStorage.getItem("addArr"));
+        if(savedtransactions){
+            this.addArr = savedtransactions;
+        }
+        this.updateMoney()
+    },
+    mounted(){
+        this.setLocation(14)
     },
     methods:{
         ...mapActions(counter,["setLocation"]),
@@ -20,25 +35,38 @@ export default{
         closeAddDialog(){
             this.addDialog=false
         },
-        showDeleteDialog(){
+        showDeleteDialog(index){
             this.deleteDialog=true
+            this.deleIndex=index
         },
         closeDeleteDialog(){
             this.deleteDialog=false
         },
-        //新增視窗防呆和丟資料
+        updateMoney(){
+            this.addArr.forEach(item =>{
+                if(item.amount>0){
+                    item.amount=Number(item.amount)
+                    this.positiveNum+=item.amount
+                }else{
+                    this.negativeNum-=item.amount
+                }
+            })
+            this.positiveNum = Math.abs(this.positiveNum)
+            this.balanceNum=this.positiveNum-this.negativeNum
+        },
         addItem() {
             const item = document.getElementById("addItem").value;
             const money = document.getElementById("addMoney").value;
 
             if (item != "" && money != "") {
                 if(money>0){
-                    this.positiveNum+=this.money
+                    this.positiveNum=this.positiveNum+this.money
                 }else{
-                    this.negativeNum+=this.money
+                    this.negativeNum=this.negativeNum-this.money
                 }
                     alert("新增成功")
-                    this.balanceNum = this.positiveNum - this.negativeNum;
+                    this.negativeNum = Math.abs(this.negativeNum)
+                    this.balanceNum = this.positiveNum-this.negativeNum;
                     this.item = "";
                     this.money = "";
 
@@ -48,16 +76,31 @@ export default{
                     }
 
                     this.addArr.push(itemObj)
-                    localStorage.setItem("this.addArr", JSON.stringify((this.addArr)));
+                    localStorage.setItem("addArr", JSON.stringify((this.addArr)));
                 }
             else {
                 alert("欄位不能為空白，請再次檢查")
             }
+
+            this.closeAddDialog()
         },
+
+        deleteTransaction(index){
+            this.addArr.splice(index,1)
+            localStorage.setItem("addArr",JSON.stringify(this.addArr))
+        },
+        confirmDeleteTransaction(){
+            if(this.deleIndex!==null){
+                this.deleteTransaction(this.deleIndex)
+                this.deleIndex=null
+            }
+            this.closeDeleteDialog()
+            this.updateMoney()
+        },
+        goLogin(){
+            this.$router.push('ExpenseTrackerLogin')
+        }
     },
-    mounted(){
-        this.setLocation(14)
-    }
 }
 </script>
 
@@ -72,7 +115,10 @@ export default{
             </div>
             <div class="balanceArea">
                 <p>Your Balance</p>
-                <p id="balanceNum">${{ this.balanceNum }}</p>
+                <p id="balanceNum" :class="{'postive':balanceNum>0,'negative':balanceNum<0}">${{ this.balanceNum }}</p>
+            </div>
+            <div class="otherArea">
+                <button type="button" @click="goLogin()">Log Out</button>
             </div>
         </div>
         <div class="recordArea">
@@ -83,7 +129,7 @@ export default{
                 </div>
                 <div class="expense">
                     <p>EXPENSE</p>
-                    <P id="negativeNum">${{ this.negativeNum }}</P>
+                    <P id="negativeNum">$-{{ this.negativeNum }}</P>
                 </div>
             </div>
             <div class="buttonArea">
@@ -103,18 +149,18 @@ export default{
                 <div class="deleteShow">
                     <i class="fa-solid fa-xmark" @click="closeDeleteDialog()"></i>
                     <p>Sure to delete?</p>
-                    <button type="button">Delete</button>
+                    <button type="button" @click="confirmDeleteTransaction()" :key="index">Delete</button>
                 </div>
             </div>
             <div class="listArea">
                 <ul>
                     <li>
-                        <div class="itemArea" v-for="(item,index) in addArr">
-                            <p>{{ item.text }}</p>
-                            <p>${{ item.amount }}</p>
-                            <div class="listBtn">
-                                <button type="button" @click="showDeleteDialog()">Delete</button>
+                        <div class="itemArea" v-for="(item,index) in addArr" :key="index">
+                            <div class="textArea">
+                                <p>{{ item.text }}</p>
+                                <p>${{ item.amount }}</p>
                             </div>
+                            <button type="button" @click="showDeleteDialog()">Delete</button>
                         </div>
                     </li>
                 </ul>
@@ -127,6 +173,15 @@ export default{
     .content{
         width: 100vw;
         display: flex;
+        position: relative;
+
+        .positive{
+            color: darkcyan;
+        }
+
+        .negative{
+            color: darkred;
+        }
 
         .profileArea{
             width: 25vw;
@@ -137,7 +192,7 @@ export default{
             color: white;
 
             .title{
-                margin-top: 25vmin;
+                margin-top: 20vmin;
                 height: 25vh;
 
                 p{
@@ -163,12 +218,36 @@ export default{
                     font-size: 28pt;
                 }
             }
+
+            .otherArea{
+
+                button{
+                    width: 8vw;
+                    height: 5vh;
+                    border-radius: 5px;
+                    background-color: lightgrey;
+                    color: white;
+                    font-size: 16pt;
+                    border-style: none;
+                    margin-top: 6vmin;
+
+                    &:hover{
+                        background-color: dimgray;
+                        color: white;
+                    }
+
+                    &:active{
+                        background-color: lightgray;
+                        color: white;
+                    }
+                }
+            }
         }
 
         .recordArea{
             .incomeAndExpense{
                 width: 75vw;
-                height: 28vh;
+                height: 20vh;
                 display: flex;
                 justify-content: space-around;
                 text-align: center;
@@ -180,16 +259,16 @@ export default{
                 }
 
                 .income{
-                    color: #9fd6a3;
+                    color: darkcyan;
                 }
 
                 .expense{
-                    color: #e1c0ce;
+                    color: darkred;
                 }
             }
 
             .buttonArea{
-                height: 15vh;
+                height: 8vh;
                 text-align: center;
 
                 button{
@@ -214,7 +293,17 @@ export default{
             }
 
             .addTransaction{
-                position: relative;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(0,0,0,0.7);
+                z-index: 999;
+
                 .addShow{
                     width: 30vw;
                     height: 35vh;
@@ -226,7 +315,7 @@ export default{
 
                     i{
                         position: absolute;
-                        right: 31.5%;
+                        right: 36%;
                         color: white;
                         font-size: 15pt;
                     }
@@ -271,82 +360,102 @@ export default{
             }
 
             .deleteItem{
-                width: 30vw;
-                height: 35vh;
-                border-radius: 10px;
-                background-color: lightgray;
-                text-align: center;
-                padding-top: 2vmin;
-                margin: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(0,0,0,0.7);
+                z-index: 999;
 
-                    i{
-                        position: absolute;
-                        right: 23%;
-                        color: white;
-                        top: 72%;
-                        font-size: 16pt;
+                .deleteShow{
+                    width: 30vw;
+                    height: 35vh;
+                    border-radius: 10px;
+                    background-color: lightgray;
+                    text-align: center;
+                    padding-top: 2vmin;
+                    margin: auto;
+
+                        i{
+                            position: absolute;
+                            right: 36%;
+                            color: white;
+                            top: 34%;
+                            font-size: 16pt;
+                        }
+
+                        P{
+                            margin-bottom: 0;
+                            color: white;
+                            font-size: 28pt;
+                            margin-top: 4vmin;
+                        }
+
+                        button{
+                            width: 12vw;
+                            height: 6vh;
+                            border-radius: 5px;
+                            background-color: white;
+                            color: dimgray;
+                            font-size: 14pt;
+                            border-style: none;
+                            margin-top: 9vmin;
+
+                            &:hover{
+                                background-color: dimgray;
+                                color: white;
+                            }
+
+                            &:active{
+                                background-color: white;
+                                color: dimgray;
+                            } 
+                        }
                     }
-
-                    P{
-                        margin-bottom: 0;
-                        color: white;
-                        font-size: 28pt;
-                        margin-top: 4vmin;
-                    }
-
-                    button{
-                    width: 12vw;
-                    height: 6vh;
-                    border-radius: 5px;
-                    background-color: white;
-                    color: dimgray;
-                    font-size: 14pt;
-                    border-style: none;
-                    margin-top: 9vmin;
-
-                    &:hover{
-                        background-color: dimgray;
-                        color: white;
-                    }
-
-                    &:active{
-                        background-color: white;
-                        color: dimgray;
-                    }
-                    }
-                }
-
             }
-
-
+        }
 
             .listArea{
                 width: 70vw;
+                height: 60vh;
                 margin: auto;
-                padding: 4vmin;
-                border: 1px solid black;
+                overflow-x: auto;
+                //border: 1px solid black;
 
                 ul{
                     color: lightgray;
+                    margin-left: 10vmin;
+                    margin-top: 5vmin;
+                    
+
                     li{
                         display: flex;
-    
+                        flex-wrap: wrap;
+                        gap: 2vmin;
+                        
+
                         .itemArea{
-                            //display: flex;
-                            justify-content: space-around;
-                            //padding: 2vmin;
-                            width: 50vmin;
+                            width: 40vmin;
                             height: 18vmin;
                             border-radius: 10px;
                             border: 2px solid lightgray;
+                            text-align: center;
 
-                            p{
-                                font-size: 14pt;
-                                color: black;
+                            .textArea{
+                                width: 35vmin;
+                                display: flex;
+                                justify-content: space-around;
+
+                                p{
+                                    font-size: 14pt;
+                                    color: black;
+                                    margin-top: 2vmin;
+                                }
                             }
-                        }
-
-                        .listBtn{
 
                             button{
                             width: 8vw;
@@ -356,24 +465,21 @@ export default{
                             color: white;
                             font-size: 14pt;
                             border-style: none;
-                            margin-left: 16vmin;
+                            margin-top: 2.5vmin;
 
-                            &:hover{
-                                background-color: dimgray;
-                                color: white;
-                            }
+                                &:hover{
+                                    background-color: dimgray;
+                                    color: white;
+                                }
 
-                            &:active{
-                                background-color: lightgray;
-                                color: white;
+                                &:active{
+                                    background-color: lightgray;
+                                    color: white;
+                                }
                             }
                         }
-
-                        }
-
-
                     }
                 }
             }
-        }
+    }
 </style>

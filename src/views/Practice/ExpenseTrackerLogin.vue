@@ -4,6 +4,7 @@ import counter from "../../stores/counter"
 export default{
     data(){
         return{
+            userinfoArr:JSON.parse(localStorage.getItem("this.userinfoArr")) || [],
         }
     },
     methods:{
@@ -20,11 +21,32 @@ export default{
 
             let existingUserInfo = localStorage.getItem('this.userinfoArr')
 
-            if(account==existingUserInfo.userName&&password==existingUserInfo.userPassword){
-                alert("登錄成功")
+
+
+            if(account!==""||password!==""){
+                console.log(existingUserInfo)
+                
+
+                if(account==existingUserInfo&&password==existingUserInfo.userPassword){
+                    console.log(123)
+                    alert("登錄成功")
+                    this.goProfile()
+                    
+                }else{
+                    //alert("登錄成功")
+                    //this.goProfile()
+                    alert("帳號或密碼錯誤，請重新輸入")
+                }
+            }else{
+                alert("帳號或密碼不得為空，請重新輸入")
+                this.goProfile()
             }
 
-            this.goProfile();
+            // if(account==existingUserInfo.userName&&password==existingUserInfo.userPassword){
+            //     alert("登錄成功")
+            // }
+
+            
         }
     },
     mounted(){
