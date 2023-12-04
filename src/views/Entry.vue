@@ -33,6 +33,9 @@
             goProvide(){
                 this.$router.push('/Vfor')
             },
+            goDataFlow(){
+                this.$router.push('DataFlow')
+            },
             goPracticeOne(){
                 this.$router.push('/Three')
             },
@@ -89,6 +92,9 @@
         </div>
         <div class="itemFourteen">
             <a href="https://monumental-crumble-977d07.netlify.app/"><p>Profile Website</p></a>
+        </div>
+        <div class="itemFifteen">
+            <p @click="goDataFlow()">Data Flow</p>
         </div>
     </div>
 </template>
@@ -315,6 +321,22 @@
             color: black;
         }
 
+        &:hover{
+            opacity: 0.5;
+            scale: 1.01;
+        }
+
+        &:active{
+            opacity: 1;
+            scale: 0.8;
+        }
+    }
+
+    .itemFifteen{
+        width: 15vw;
+        height: 10vh;
+        border-radius: 5px;
+        background-color: #FFFDDE;
         &:hover{
             opacity: 0.5;
             scale: 1.01;

@@ -21,11 +21,8 @@ export default{
 
             let existingUserInfo = localStorage.getItem('this.userinfoArr')
 
-
-
             if(account!==""||password!==""){
                 console.log(existingUserInfo)
-                
 
                 if(account==existingUserInfo&&password==existingUserInfo.userPassword){
                     console.log(123)
