@@ -21,7 +21,7 @@ import FlowChildTwo from '../components/FlowChildTwo.vue';
             }
         },
         mounted(){
-            this.setLocation(15)
+            this.setLocation(10)
         },
         components:{
             FlowChildOne,
@@ -53,7 +53,7 @@ import FlowChildTwo from '../components/FlowChildTwo.vue';
 
         span{
             font-size: 36pt;
-            color: darkgray;
+            color: lightslategray;
         }
 
         p{

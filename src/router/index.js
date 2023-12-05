@@ -50,6 +50,11 @@ const router = createRouter({
       component: () => import('../views/Emit.vue')
     },
     {
+      path: '/ProvideAndInject',
+      name: 'ProvideAndInject',
+      component: () => import('../views/ProvideAndInject.vue')
+    },
+    {
       path: '/DataFlow',
       name: 'DataFlow',
       component: () => import('../views/DataFlow.vue')

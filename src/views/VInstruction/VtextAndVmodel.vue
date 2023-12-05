@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapActions } from 'pinia'
-import counter from "../stores/counter"
+import counter from "../../stores/counter"
 export default{
     data(){
         return{
@@ -111,11 +111,12 @@ export default{
 
     span{
         font-size: 36pt;
-        color: darkgray;
+        color: lightslategrey;
     }
 
     p{
         font-size: 20pt;
+        color: darkgray;
     }
 
     input{

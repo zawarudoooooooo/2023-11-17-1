@@ -27,17 +27,20 @@ export default{
 </script>
 
 <template>
-    <div class="showArea">
-        <h1>Emit</h1>
-        <h3>{{ this.childText }}</h3>
+    <div class="content">
+        <span>Emit</span>
+        <p>{{ this.childText }}</p>
         <EmitChild @orange="this.emitObj" />
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .showArea{
-        width: 800px;
-        height: 600px;
-    }
+    .content{
+        text-align: center;
 
+        span{
+            font-size: 36pt;
+            color: lightslategrey;
+        }
+    }
 </style>

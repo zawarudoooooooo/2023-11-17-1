@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapActions } from 'pinia'
-import counter from "../stores/counter"
+import counter from "../../stores/counter"
 export default{
     data(){
         return{
@@ -81,7 +81,7 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
 
         span{
             font-size: 36pt;
-            color: darkgray;
+            color: lightslategrey;
         }
 
         p{
@@ -114,7 +114,7 @@ V-bind 單向綁定 標籤屬性 綁 變數 -->
     }
 
     .title{
-        color: lightslategrey;
+        color: darkgray;
     }
 
     .blue{

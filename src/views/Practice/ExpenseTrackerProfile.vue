@@ -25,7 +25,7 @@ export default{
         this.updateMoney()
     },
     mounted(){
-        this.setLocation(14)
+        this.setLocation(13)
     },
     methods:{
         ...mapActions(counter,["setLocation"]),

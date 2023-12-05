@@ -33,6 +33,7 @@ export default{
 </script>
 
 <template>
+    <p>Props</p>
     <div class="area">
         <h2>{{ this.title }}</h2>
         <PropsChild 
@@ -55,6 +56,11 @@ export default{
 </template>
 
 <style lang="scss" scoped>
+    p{
+        font-size: 36pt;
+        color: lightslategray;
+        text-align: center;
+    }
     .area{
         margin-top: 1vmin;
         text-align: center;

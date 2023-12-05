@@ -74,7 +74,7 @@ export default{
 
         span{
         font-size: 36pt;
-        color: darkgray;
+        color: lightslategrey;
         }
         
         p{

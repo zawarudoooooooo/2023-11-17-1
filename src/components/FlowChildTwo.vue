@@ -36,11 +36,11 @@
     .content{
         width: 50vw;
         height: 60vh;
-        border: 1px solid dimgrey;
+        border: 2px solid dimgrey;
 
         span{
             font-size: 36pt;
-            color: darkgray;
+            color: lightslategray;
         }
 
         p{

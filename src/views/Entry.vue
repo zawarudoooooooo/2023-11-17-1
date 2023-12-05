@@ -30,8 +30,8 @@
             goEmit(){
                 this.$router.push('/Emit')
             },
-            goProvide(){
-                this.$router.push('/Vfor')
+            goProvideAndInject(){
+                this.$router.push('/ProvideAndInject')
             },
             goDataFlow(){
                 this.$router.push('DataFlow')
@@ -76,10 +76,10 @@
             <p @click="goEmit()">Emit</p>
         </div>
         <div class="itemNine">
-            <p>Provide</p>
+            <p @click="goProvideAndInject()">Provide And Inject</p>
         </div>
         <div class="itemTen">
-            <p>Inject</p>
+            <p @click="goDataFlow()">Data Flow</p>
         </div>
         <div class="itemEleven">
             <p @click="goPracticeOne()">Practice One</p>
@@ -93,9 +93,9 @@
         <div class="itemFourteen">
             <a href="https://monumental-crumble-977d07.netlify.app/"><p>Profile Website</p></a>
         </div>
-        <div class="itemFifteen">
+        <!-- <div class="itemFifteen">
             <p @click="goDataFlow()">Data Flow</p>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -235,7 +235,7 @@
     }
     
     .itemNine{
-        width: 10vw;
+        width: 25vw;
         height: 10vh;
         border-radius: 5px;
         background-color: #E7FBBE;
@@ -251,7 +251,7 @@
     }
     
     .itemTen{
-        width: 10vw;
+        width: 15vw;
         height: 10vh;
         border-radius: 5px;
         background-color: #FFCBCB;

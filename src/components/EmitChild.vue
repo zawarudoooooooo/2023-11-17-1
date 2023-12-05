@@ -18,7 +18,7 @@ export default{
 
 <template>
     <div class="childArea">
-        <p>Emit Child</p>
+        <span>Emit Child</span>
         <p>{{ this.text }}</p>
         <button type="button" @click="this.emitGo()">button</button>
         <button type="button" @click="$emit('orange',this.text2)">button2</button>
@@ -29,9 +29,30 @@ export default{
 
 <style lang="scss" scoped>
     .childArea{
-        width: 300px;
-        height: 300px;
-        border: 1px solid orange;
+        width: 80vw;
+        height: 30vh;
+        margin: auto;
+        border: 3px solid dimgray;
+
+        span{
+            font-size: 36pt;
+            color: lightslategrey;
+        }
+
+        p{
+            font-size: 20pt;
+            color: darkgray;
+        }
+
+        button{
+        width: 35vmin;
+        height: 4vmin;
+        border-radius: 5px;
+        background-color: darkgray;
+        color: white;
+        border-style: none;
+        margin-right: 2vmin;
+        }
     }
 
 </style>

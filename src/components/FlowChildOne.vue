@@ -46,11 +46,11 @@
     .content{
         width: 50vw;
         height: 60vh;
-        border: 1px solid dimgray;
+        border: 2px solid dimgray;
 
         span{
             font-size: 36pt;
-            color: darkgray;
+            color: lightslategray;
         }
 
         p{

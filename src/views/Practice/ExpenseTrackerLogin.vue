@@ -24,7 +24,7 @@ export default{
             if(account!==""||password!==""){
                 console.log(existingUserInfo)
 
-                if(account==existingUserInfo&&password==existingUserInfo.userPassword){
+                if(account==existingUserInfo.userName&&password==existingUserInfo.userPassword){
                     console.log(123)
                     alert("登錄成功")
                     this.goProfile()
@@ -47,7 +47,7 @@ export default{
         }
     },
     mounted(){
-        this.setLocation(12)
+        this.setLocation(13)
     }
 }
 </script>
