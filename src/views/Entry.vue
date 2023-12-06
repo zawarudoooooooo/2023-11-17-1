@@ -36,6 +36,9 @@
             goDataFlow(){
                 this.$router.push('DataFlow')
             },
+            goRouteFam(){
+                this.$router.push('/RouteFam')
+            },
             goPracticeOne(){
                 this.$router.push('/Three')
             },
@@ -93,9 +96,9 @@
         <div class="itemFourteen">
             <a href="https://monumental-crumble-977d07.netlify.app/"><p>Profile Website</p></a>
         </div>
-        <!-- <div class="itemFifteen">
-            <p @click="goDataFlow()">Data Flow</p>
-        </div> -->
+        <div class="itemFifteen">
+            <p @click="goRouteFam()">Route Fam</p>
+        </div>
     </div>
 </template>
 

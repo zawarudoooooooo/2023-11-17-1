@@ -60,6 +60,27 @@ const router = createRouter({
       component: () => import('../views/DataFlow.vue')
     },
     {
+      path: '/User/:userId',
+      name: 'User',
+      component: () => import('../views/User.vue'),
+      props:true
+    },
+    {
+      path: '/RouteFam',
+      name: 'RouteFam',
+      component: () => import('../views/RouteFam.vue'),
+      children:[
+        {
+          path:'RouteChildOne',
+          component: () => import('../components/RouteChildOne.vue'),
+        },
+        {
+          path:'RouteChildTwo',
+          component: () => import('../components/RouteChildTwo.vue'),
+        },
+      ]
+    },
+    {
       path: '/Three',
       name: 'Three',
       component: () => import('../views/Practice/Three.vue')
@@ -84,6 +105,11 @@ const router = createRouter({
       name: 'ExpenseTrackerProfile',
       component: () => import('../views/Practice/ExpenseTrackerProfile.vue')
     },
+    {
+      path:"/:pathMatch(.*)*",
+      name:"NotFound",
+      component: () => import('../views/NotFound.vue'),
+    }
   ]
 })
 export default router

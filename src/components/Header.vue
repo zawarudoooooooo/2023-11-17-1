@@ -5,6 +5,7 @@ import counter from "../stores/counter"
 export default{
     data(){
         return{
+            arr:["aaa","bbb","ccc"]
 
         }
     },
@@ -19,6 +20,7 @@ export default{
 
 <template>
     <div class="header">
+        <RouterLink v-for="i in arr" :to="`/User/${i}`">User{{ i }}</RouterLink>
     </div>
     <div class="buttom">
         <p>{{ locationInfo }}</p>
