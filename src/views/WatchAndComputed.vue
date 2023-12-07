@@ -51,7 +51,7 @@ export default{
         ...mapActions(counter,["setLocation"])
     },
     mounted(){
-        this.setLocation(6)
+        this.setLocation(15)
     }
 }
 </script>

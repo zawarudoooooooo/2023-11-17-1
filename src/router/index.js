@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/VInstruction/VifAndVshow.vue')
     },
     {
+      path: '/Vslot',
+      name: 'Vslot',
+      component: () => import('../views/VInstruction/VSlot.vue')
+    },
+    {
       path: '/WatchAndComputed',
       name: 'WatchAndComputed',
       component: () => import('../views/WatchAndComputed.vue')
@@ -72,11 +77,11 @@ const router = createRouter({
       children:[
         {
           path:'RouteChildOne',
-          component: () => import('../components/RouteChildOne.vue'),
+          component: () => import('../components/Route/RouteChildOne.vue'),
         },
         {
           path:'RouteChildTwo',
-          component: () => import('../components/RouteChildTwo.vue'),
+          component: () => import('../components/Route/RouteChildTwo.vue'),
         },
       ]
     },

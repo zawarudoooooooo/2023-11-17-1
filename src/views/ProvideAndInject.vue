@@ -1,7 +1,7 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import counter from "../stores/counter"
-import InjectFather from "../components/InjectFather.vue"
+import InjectFather from "../components/Inject/InjectFather.vue"
 import { computed } from 'vue'
 import { ref,provide } from 'vue'
 export default{

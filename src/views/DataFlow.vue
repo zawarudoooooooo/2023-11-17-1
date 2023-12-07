@@ -1,8 +1,8 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import counter from "../stores/counter"
-import FlowChildOne from '../components/FlowChildOne.vue';
-import FlowChildTwo from '../components/FlowChildTwo.vue';
+import FlowChildOne from '../components/FlowChild/FlowChildOne.vue';
+import FlowChildTwo from '../components/FlowChild/FlowChildTwo.vue';
     export default{
         data(){
             return{

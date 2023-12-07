@@ -21,6 +21,9 @@
             goVifAndVshow(){
                 this.$router.push('/VifAndVshow')
             },
+            goVslot(){
+                this.$router.push('/Vslot')
+            },
             goWatchAndComputed(){
                 this.$router.push('/WatchAndComputed')
             },
@@ -70,7 +73,7 @@
             <p @click="goVifAndVshow()">V-if And V-show</p>
         </div>
         <div class="itemSix">
-            <p @click="goWatchAndComputed()">Watch And Computed</p>
+            <p @click="goVslot()">V slot</p>
         </div>
         <div class="itemSeven">
             <p @click="goProps()">Props</p>
@@ -94,10 +97,10 @@
             <p @click="goExpenseTracker()">Expense Tracker</p>
         </div>
         <div class="itemFourteen">
-            <a href="https://monumental-crumble-977d07.netlify.app/"><p>Profile Website</p></a>
+            <p @click="goRouteFam()">Route Fam</p>
         </div>
         <div class="itemFifteen">
-            <p @click="goRouteFam()">Route Fam</p>
+            <p @click="goWatchAndComputed()">Watch And Computed</p>
         </div>
     </div>
 </template>
@@ -192,7 +195,7 @@
         }
     }
     .itemSix{
-        width: 28vw;
+        width: 10vw;
         height: 10vh;
         border-radius: 5px;
         background-color: #E7FBBE;
@@ -314,7 +317,7 @@
         }
     }
     .itemFourteen{
-        width: 20vw;
+        width: 15vw;
         height: 10vh;
         border-radius: 5px;
         background-color: #D9D7F1;
@@ -336,7 +339,7 @@
     }
 
     .itemFifteen{
-        width: 15vw;
+        width: 28vw;
         height: 10vh;
         border-radius: 5px;
         background-color: #FFFDDE;

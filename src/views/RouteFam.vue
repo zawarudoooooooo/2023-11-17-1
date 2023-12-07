@@ -2,7 +2,7 @@
 import { mapState, mapActions } from 'pinia'
 import counter from "../stores/counter"
 import { RouterLink, RouterView } from 'vue-router'
-import RouteFamBar from '../components/RouteFamBar.vue'
+import RouteFamBar from '../components/Route/RouteFamBar.vue'
 export default{
     data(){
         return{
@@ -12,7 +12,7 @@ export default{
         ...mapActions(counter,["setLocation"]),
     },
     mounted(){
-        this.setLocation(15)
+        this.setLocation(14)
     },
     components:{
         RouterView,
