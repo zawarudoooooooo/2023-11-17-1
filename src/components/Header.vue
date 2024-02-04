@@ -20,7 +20,7 @@ export default{
 
 <template>
     <div class="header">
-        <RouterLink v-for="i in arr" :to="`/User/${i}`">User{{ i }}</RouterLink>
+        <RouterLink v-for="i in arr" :to="`/User/${i}`" class="user">User{{ i }}</RouterLink>
     </div>
     <div class="buttom">
         <p>{{ locationInfo }}</p>
@@ -33,6 +33,12 @@ export default{
         height: 20vh;
         background-color: lightcyan;
         opacity: 0.7;
+
+        .user{
+            text-decoration: none;
+            color: lightslategray;
+            margin-left: 2vmin;
+        }
     }
 
     .buttom{

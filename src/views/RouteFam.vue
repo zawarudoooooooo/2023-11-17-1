@@ -41,7 +41,6 @@ export default{
             height: 50vh;
             border: 3px solid burlywood;
         }
-
         .rightArea{
             width: 50vw;
             height: 50vh;
